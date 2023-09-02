@@ -1,0 +1,1 @@
+insert into user_account (name, created_at) values ('yuje', now());
