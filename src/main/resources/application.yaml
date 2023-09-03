@@ -2,8 +2,8 @@ spring:
   ethod.filter.enabled: true
   datasource:
     url: jdbc:mysql://localhost:3306/last
-    username: yuje
-    password: root
+    username: 'yuje'
+    password: yuje
   sql.init.mode: always
   jpa:
     hibernate:
