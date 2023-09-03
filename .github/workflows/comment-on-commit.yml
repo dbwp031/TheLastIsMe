@@ -1,29 +1,30 @@
-name: Comment on Commit
+name: Comment on All Commits
 
 on:
   push:
     branches:
-      - main # 원하는 브랜치에만 적용하도록 설정
+      - main
 
 jobs:
   comment:
-    runs-on: ubuntu-latest # 실행 환경 선택
-
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2 # 코드 체크아웃 -> 소스 코드를 로컬 환경으로 가져오는 과정 (git clone, git checkout, git pull 등을 사용하여 수행)
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 이를 통해 모든 커밋을 가져옵니다.
 
-    - name: Add Comments
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 토큰을 사용하여 코멘트 작성
-      run: |
-        commits=$(git log --format="%H" ${{ github.event.before }}..${{ github.event.after }})
-        for commit in $commits; do
-          echo commit
-          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "body": "Good"
-            }' \
-            "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
-        done
+      - name: Comment on each commit
+        env:
+          GH_PAT: ${{ secrets.TheLastIsMe_GithubActions }}
+        run: |
+          # 현재 푸시의 범위 내의 모든 커밋을 가져옵니다.
+          commits=$(git log ${{ github.event.before }}..${{ github.event.after }} --pretty=format:"%H")
+          for commit in $commits; do
+            curl -s \
+                 -H "Authorization: token $GH_PAT" \
+                 -H "Accept: application/vnd.github.v3+json" \
+                 -X POST \
+                 -d '{"body":"NICE"}' \
+                 "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
+          done
