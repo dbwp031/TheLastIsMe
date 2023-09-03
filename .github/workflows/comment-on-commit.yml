@@ -16,7 +16,7 @@ jobs:
 
       - name: Comment on each commit
         env:
-          GH_PAT: ${{ secrets.TheLastIsMe_GithubActions }}
+          GH_PAT: ${{ secrets.MY_SECRET_KEY }}
         run: |
           # 현재 푸시의 범위 내의 모든 커밋을 가져옵니다.
           commits=$(git log ${{ github.event.before }}..${{ github.event.after }} --pretty=format:"%H")
