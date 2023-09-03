@@ -1,1 +1,28 @@
+name: Comment on Commit
 
+on:
+  push:
+    branches:
+      - main # 원하는 브랜치에만 적용하도록 설정
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest # 실행 환경 선택
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2 # 코드 체크아웃 -> 소스 코드를 로컬 환경으로 가져오는 과정 (git clone, git checkout, git pull 등을 사용하여 수행)
+
+    - name: Add Comments
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 토큰을 사용하여 코멘트 작성
+      run: |
+        commits=$(git log --format="%H" ${{ github.event.before }}..${{ github.event.after }})
+        for commit in $commits; do
+          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "body": "Good"
+            }' \
+            "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
+        done
