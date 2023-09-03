@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build and test with Gradle
         run: |
-          ./gradlew build
+          ./gradlew test
 
   auto-merge:
     needs: build-and-test
