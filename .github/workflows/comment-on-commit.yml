@@ -16,7 +16,7 @@ jobs:
 
       - name: Comment on each commit
         env:
-          GH_PAT: ${{ secrets.ACTION_SECRET_KEY }}
+          GH_PAT: ${{ secrets.MY_SECRET_KEY }}
         run: |
           # 현재 푸시의 범위 내의 모든 커밋을 가져옵니다.
           commits=$(git log ${{ github.event.before }}..${{ github.event.after }} --pretty=format:"%H")
@@ -25,6 +25,6 @@ jobs:
                  -H "Authorization: token $GH_PAT" \
                  -H "Accept: application/vnd.github.v3+json" \
                  -X POST \
-                 -d '{"body":"NICE"}' \
+                 -d '{"body":"👍"}' \
                  "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
           done
