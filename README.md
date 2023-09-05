@@ -10,5 +10,8 @@
 
 * **comment-on-commit.yaml**  
 개인 프로젝트를 하느라 쓸쓸한 나에게 매 커밋마다 응원을 해주는 커밋 메세지 작성 "👍"
+![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/6014f2cb-9694-4541-9e6f-21fadf959553)
+
 * **main.yaml**  
-  테스트 진행 중
+CI/CD 파이프라인 구축.
+![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/40b206e9-b53d-4ede-8f9f-1e617a80ab8f)
