@@ -10,6 +10,7 @@ echo "> Git Pull"
 git pull
 
 echo "> 프로젝트 Build 시작"
+sudo chmod -x gradlew
 ./gradlew build
 
 echo "> step1 디렉토리로 이동"
