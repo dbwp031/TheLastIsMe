@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
       - name: GRANT execute permission for gradlew
         run: chmod +x ./gradlew
-
+        
       - name: Gradle Caching
         uses: actions/cache@v3
         with:
@@ -33,5 +33,19 @@ jobs:
 
   
       - name: Build with Gradle
-        run: ./gradlew build -x build
+        run: ./gradlew build -x test
+
+      - name: Make zip file
+        run: zip -qq -r ./$GITHUB_SHA.zip .
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credential@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Upload to S3
+        run: aws s3 cp --region us-east-2 ./$GITHUB_SHA.zip s3://${{ secrets.AWS_S3_BUCKET_NAME }}/deploy/$GITHUB_SHA.zip --source .
+
  
