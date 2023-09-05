@@ -1,6 +1,6 @@
 #! /bin/bash
 
-REPOSITORY=home/ec2-user/app
+REPOSITORY=/home/ec2-user/app
 PROJECT_NAME=TheLastIsMe
 
 cd $REPOSITORY/$PROJECT_NAME/
