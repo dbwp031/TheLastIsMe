@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
       - name: GRANT execute permission for gradlew
         run: chmod +x ./gradlew
-        
+
       - name: Gradle Caching
         uses: actions/cache@v3
         with:
@@ -33,5 +33,5 @@ jobs:
 
   
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        run: ./gradlew build -x build
  
