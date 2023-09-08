@@ -2,8 +2,7 @@
 진정한 **The Last Man**을 찾자!
 * http://ec2-3-21-80-153.us-east-2.compute.amazonaws.com:8080/
 ## Project Architecture
-![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/a28a45dc-67d4-4360-87a2-34b806c65a2a)
-* ~`AWS Route53` 설정 진행 중~ 고정 지출이 발생하게 되기 때문에 사용하지 않기로 함.
+![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/a0049db6-3c26-42b4-a055-7654cc2d9a3b)
 
 ## Github Actions
 이 프로젝트에는 재미있는 `Github Actions`들이 포함되어 있다.
