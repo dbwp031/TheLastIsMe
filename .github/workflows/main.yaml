@@ -45,9 +45,9 @@ jobs:
         with:
           files: ${{ env.APPLICATION_PROD_PATH }}
         env:
-          spring.database.spring.database.url: {{ secrets.PROD_DB_URL}}
-          spring.database.spring.database.username: {{ secrets.PROD_DB_USERNAME}}
-          spring.database.spring.database.password: {{ secrets.PROD_DB_PASSWORD}}
+          spring.database.spring.database.url: ${{ secrets.PROD_DB_URL}}
+          spring.database.spring.database.username: ${{ secrets.PROD_DB_USERNAME}}
+          spring.database.spring.database.password: ${{ secrets.PROD_DB_PASSWORD}}
 
 
       - name: GRANT execute permission for gradlew
