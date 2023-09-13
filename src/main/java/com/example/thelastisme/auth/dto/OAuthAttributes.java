@@ -1,6 +1,5 @@
 package com.example.thelastisme.auth.dto;
 
-import com.example.thelastisme.auth.enums.AuthProviderType;
 import com.example.thelastisme.auth.enums.MemberRole;
 import com.example.thelastisme.domain.Member;
 import lombok.Builder;

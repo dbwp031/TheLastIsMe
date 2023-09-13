@@ -1,6 +1,5 @@
 package com.example.thelastisme.domain;
 
-import com.example.thelastisme.auth.enums.AuthProviderType;
 import com.example.thelastisme.auth.enums.MemberRole;
 import com.example.thelastisme.repository.RoleRepository;
 import jakarta.persistence.*;
