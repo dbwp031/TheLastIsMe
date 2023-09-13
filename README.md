@@ -14,3 +14,6 @@
 * **main.yaml**  
 CI/CD 파이프라인 구축.
 ![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/40b206e9-b53d-4ede-8f9f-1e617a80ab8f)
+
+## Update Notes
+* Spring Security OAuth 설정
