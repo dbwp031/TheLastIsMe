@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: ${include-profile}
+    include: prod
   security:
     oauth2:
       client:
