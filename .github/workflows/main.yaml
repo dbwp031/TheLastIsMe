@@ -2,10 +2,14 @@ name: CI/CD using Github Actions & AWS CodeDeploy
 
 on:
   push:
-    branches: ["main", "develop"]
+    branches: ["main"]
 
 #permissions:
 #  contents: read
+
+env:
+  APPLICATION_PATH: ./src/main/resources/application.yaml
+  APPLICATION_PROD_PATH: ./src/main/resources/application-prod.yaml
 
 jobs:
   build:
@@ -17,19 +21,28 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: make application [DEV].yaml
-        if: contains(github.ref, 'develop')
-        run: |
-          touch ./src/main/resources/application.yaml
-          echo "${{ secrets.APPLICATION_YAML_DEV }}" > ./src/main/resources/application.yaml
-        shell: bash
+      - name: Set application.yaml file
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: ${{ env.APPLICATION_PATH }}
+        env:
+          spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
+          spring.security.oauth2.client.registration.kakao.client-id: ${{ secrets.CLIENT_ID_KAKAO }}
+          spring.security.oauth2.client.registration.kakao.client-secret: ${{ secrets.CLIENT_SECRET_KAKAO }}
+          spring.security.oauth2.client.registration.google.client-id: ${{ secrets.CLIENT_ID_GOOGLE }}
+          spring.security.oauth2.client.registration.google.client-secret: ${{ secrets.CLIENT_SECRET_GOOGLE }}
+          spring.security.oauth2.client.registration.naver.client-id: ${{ secrets.CLIENT_ID_NAVER }}
+          spring.security.oauth2.client.registration.naver.client-secret: ${{ secrets.CLIENT_SECRET_NAVER }}
 
-      - name: make application [PROD].yaml
-        if: contains(github.ref, 'main')
-        run: |
-          touch ./src/main/resources/application.yaml
-          echo "${{ secrets.APPLICATION_YAML_PROD }}" > ./src/main/resources/application.yaml
-        shell: bash
+      - name: Set application.yaml file
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: ${{ env.APPLICATION_PROD_PATH }}
+        env:
+          spring.database.spring.database.url: {{ secrets.PROD_DB_URL}}
+          spring.database.spring.database.username: {{ secrets.PROD_DB_USERNAME}}
+          spring.database.spring.database.password: {{ secrets.PROD_DB_PASSWORD}}
+
 
       - name: GRANT execute permission for gradlew
         run: chmod +x ./gradlew
