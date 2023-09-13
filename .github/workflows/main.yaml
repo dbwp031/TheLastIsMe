@@ -28,7 +28,7 @@ jobs:
         with:
           files: ./src/main/resources/application.yaml
         env:
-#          spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
+          spring.profiles.include: prod
           spring.security.oauth2.client.registration.kakao.client-id: ${{ secrets.CLIENT_ID_KAKAO }}
           spring.security.oauth2.client.registration.kakao.client-secret: ${{ secrets.CLIENT_SECRET_KAKAO }}
           spring.security.oauth2.client.registration.kakao.redirect-uri: ${{ secrets.REDIRECT_URI_KAKAO }}
