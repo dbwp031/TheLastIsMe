@@ -28,7 +28,7 @@ jobs:
         with:
           files: ./src/main/resources/application.yaml
         env:
-#          spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
+          spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
           spring.security.oauth2.client.registration.kakao.client-id: ${{ secrets.CLIENT_ID_KAKAO }}
           spring.security.oauth2.client.registration.kakao.client-secret: ${{ secrets.CLIENT_SECRET_KAKAO }}
           spring.security.oauth2.client.registration.kakao.redirect-uri: ${{ secrets.REDIRECT_URI_KAKAO }}
@@ -43,9 +43,9 @@ jobs:
         with:
           files: ./src/main/resources/application-prod.yaml
         env:
-          spring.database.spring.database.url: ${{ secrets.PROD_DB_URL }}
-          spring.database.spring.database.username: ${{ secrets.PROD_DB_USERNAME }}
-          spring.database.spring.database.password: ${{ secrets.PROD_DB_PASSWORD }}
+          spring.database.url: ${{ secrets.PROD_DB_URL }}
+          spring.database.username: ${{ secrets.PROD_DB_USERNAME }}
+          spring.database.password: ${{ secrets.PROD_DB_PASSWORD }}
 
 
       - name: GRANT execute permission for gradlew

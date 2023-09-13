@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: prod
+    include: dev
   security:
     oauth2:
       client:
