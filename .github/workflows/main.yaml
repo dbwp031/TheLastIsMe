@@ -35,19 +35,21 @@ jobs:
           spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
           spring.security.oauth2.client.registration.kakao.client-id: ${{ secrets.CLIENT_ID_KAKAO }}
           spring.security.oauth2.client.registration.kakao.client-secret: ${{ secrets.CLIENT_SECRET_KAKAO }}
+          spring.security.oauth2.client.registration.kakao.redirect-uri: ${{ secrets.REDIRECT_URI_KAKAO }}
           spring.security.oauth2.client.registration.google.client-id: ${{ secrets.CLIENT_ID_GOOGLE }}
           spring.security.oauth2.client.registration.google.client-secret: ${{ secrets.CLIENT_SECRET_GOOGLE }}
           spring.security.oauth2.client.registration.naver.client-id: ${{ secrets.CLIENT_ID_NAVER }}
           spring.security.oauth2.client.registration.naver.client-secret: ${{ secrets.CLIENT_SECRET_NAVER }}
+          spring.security.oauth2.client.registration.naver.redirect-uri: ${{ secrets.REDIRECT_URI_NAVER }}
 
-      - name: Set application.yaml file
+      - name: Set application-prod.yaml file
         uses: microsoft/variable-substitution@v1
         with:
           files: ${{ env.APPLICATION_PROD_PATH }}
         env:
-          spring.database.spring.database.url: ${{ secrets.PROD_DB_URL}}
-          spring.database.spring.database.username: ${{ secrets.PROD_DB_USERNAME}}
-          spring.database.spring.database.password: ${{ secrets.PROD_DB_PASSWORD}}
+          spring.database.spring.database.url: ${{ secrets.PROD_DB_URL }}
+          spring.database.spring.database.username: ${{ secrets.PROD_DB_USERNAME }}
+          spring.database.spring.database.password: ${{ secrets.PROD_DB_PASSWORD }}
 
 
       - name: GRANT execute permission for gradlew
