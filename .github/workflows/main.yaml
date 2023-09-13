@@ -13,10 +13,6 @@ on:
 #permissions:
 #  contents: read
 
-env:
-  APPLICATION_PATH: ./src/main/resources/application.yaml
-  APPLICATION_PROD_PATH: ./src/main/resources/application-prod.yaml
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,7 +26,7 @@ jobs:
       - name: Set application.yaml file
         uses: microsoft/variable-substitution@v1
         with:
-          files: ${{ env.APPLICATION_PATH }}
+          files: ./src/main/resources/application.yaml
         env:
           spring.profiles.include: ${{ secrets.INCLUDE_PROFILE }}
           spring.security.oauth2.client.registration.kakao.client-id: ${{ secrets.CLIENT_ID_KAKAO }}
@@ -45,7 +41,7 @@ jobs:
       - name: Set application-prod.yaml file
         uses: microsoft/variable-substitution@v1
         with:
-          files: ${{ env.APPLICATION_PROD_PATH }}
+          files: ./src/main/resources/application-prod.yaml
         env:
           spring.database.spring.database.url: ${{ secrets.PROD_DB_URL }}
           spring.database.spring.database.username: ${{ secrets.PROD_DB_USERNAME }}
