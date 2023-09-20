@@ -25,8 +25,8 @@ management:
 
 
 login:
-  scheme: https
-  port: 443
+  scheme: http
+  port: 8080
   default-host: 'yuje.store'
   default-failure-path: '/login'
   default-success-path: '/'
