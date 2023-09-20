@@ -35,9 +35,9 @@ public class MainController {
             userAccountRepository.save(UserAccount.of(name));
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("isNameEmpty", true);
-            return "redirect:/";
+            return "redirect:";
         }
         redirectAttributes.addFlashAttribute("isNameEmpty", false);
-        return "redirect:/";
+        return "redirect:";
     }
 }
