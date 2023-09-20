@@ -43,7 +43,6 @@ import java.util.Arrays;
                 Token jwtToken = new Token(accessToken, refreshToken);
                 JwtAuthentication authenticationRequest = new JwtAuthentication(jwtToken, request, response);
                 log.info("pre-authenticationManager.authenticate");
-                //TODO: 이놈이 문제
                 log.info("authenticationManager: {}", this.authenticationManager.toString());
                 JwtAuthentication authenticationResult = (JwtAuthentication) this.authenticationManager.authenticate(authenticationRequest);
                 log.info("post-authenticationManager.authenticate");
