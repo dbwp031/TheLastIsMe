@@ -1,6 +1,6 @@
 package com.example.thelastisme.config;
 
-import com.example.thelastisme.auth.dto.LoginUserArgumentResolver;
+import com.example.thelastisme.auth.resolver.LoginUserArgumentResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

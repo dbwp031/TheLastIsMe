@@ -1,9 +1,11 @@
 package com.example.thelastisme.auth.dto;
 
+import com.example.thelastisme.auth.enums.AuthProviderType;
 import com.example.thelastisme.auth.enums.MemberRole;
 import com.example.thelastisme.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.Map;
 /*
 * 리소스 서버로부터 받은 attributes를 받아오는 객체
 * */
+@Slf4j
 @Builder
 @Getter
 public class OAuthAttributes {
@@ -18,8 +21,10 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private String name;
     private String email;
+    private AuthProviderType authProviderType;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+        log.info("OAuthAttributes - registrationId: {}, userNameAttributeName: {}", registrationId, userNameAttributeName);
         if ("kakao".equals(registrationId)) return ofKakao("id", attributes);
         else if ("google".equals(registrationId)) return ofGoogle(userNameAttributeName, attributes);
         return ofNaver("response", attributes);
@@ -31,6 +36,7 @@ public class OAuthAttributes {
                 .email((String) attributes.get("email"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
+                .authProviderType(AuthProviderType.GOOGLE)
                 .build();
     }
     private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
@@ -41,6 +47,7 @@ public class OAuthAttributes {
                 .email((String) response.get("email"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
+                .authProviderType(AuthProviderType.KAKAO)
                 .build();
     }
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
@@ -50,6 +57,7 @@ public class OAuthAttributes {
                 .email((String) response.get("email"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
+                .authProviderType(AuthProviderType.NAVER)
                 .build();
     }
 
@@ -57,8 +65,8 @@ public class OAuthAttributes {
         Member newMember =  Member.builder()
                 .name(name)
                 .email(email)
+                .authProviderType(authProviderType)
                 .build();
-        newMember.setRoles(new ArrayList<>(Arrays.asList(MemberRole.GUEST)));
         return newMember;
     }
 }

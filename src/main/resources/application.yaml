@@ -52,3 +52,16 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+
+jwt:
+  secret-key: ${jwt-secret}
+  access-token-validity-in-sec: 1800 # 30분
+  refresh-token-validity-in-sec: 86400 #
+
+
+login:
+  scheme: http
+  port: 8080
+  default-host: 'localhost'
+  default-failure-path: '/login'
+  default-success-path: '/'
