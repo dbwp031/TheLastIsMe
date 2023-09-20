@@ -1,6 +1,6 @@
 package com.example.thelastisme.controller;
 
-import com.example.thelastisme.auth.dto.LoginUser;
+import com.example.thelastisme.auth.annotation.LoginUser;
 import com.example.thelastisme.auth.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
