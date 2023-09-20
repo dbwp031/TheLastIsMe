@@ -38,4 +38,4 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
 
 echo "> JAR NAME: $JAR_NAME"
 
-nohup java -jar $REPOSITORY/$JAR_NAME &
+nohup java -jar $REPOSITORY/$JAR_NAME > /home/ec2-user/app/nohup.out 2>&1 &
