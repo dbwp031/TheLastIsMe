@@ -22,3 +22,11 @@ management:
     web:
       exposure:
         include: health
+
+
+login:
+  scheme: http
+  port: 80
+  default-host: 'yuje.store'
+  default-failure-path: '/login'
+  default-success-path: '/'
