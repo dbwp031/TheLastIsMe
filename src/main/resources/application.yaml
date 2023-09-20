@@ -57,3 +57,8 @@ jwt:
   secret-key: ${jwt-secret}
   access-token-validity-in-sec: 1800 # 30분
   refresh-token-validity-in-sec: 86400 #
+
+server:
+  port: 8080
+  tomcat:
+    use-relative-redirects: true
