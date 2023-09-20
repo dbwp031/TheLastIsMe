@@ -24,7 +24,6 @@ import java.util.Arrays;
 /*
 * 발급받은 토큰을 이용하여 security 인증을 처리하는 필터
 * */
-@Slf4j
 @RequiredArgsConstructor
     public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -36,16 +35,12 @@ import java.util.Arrays;
         String accessToken = getCookieValue(request, "accessToken");
         String refreshToken = getCookieValue(request, "refreshToken");
         if (accessToken == null && refreshToken == null) {
-            log.info("accessToken, refreshToken 모두 0입니다.");
             filterChain.doFilter(request, response);
         } else {
             try {
                 Token jwtToken = new Token(accessToken, refreshToken);
                 JwtAuthentication authenticationRequest = new JwtAuthentication(jwtToken, request, response);
-                log.info("pre-authenticationManager.authenticate");
-                log.info("authenticationManager: {}", this.authenticationManager.toString());
                 JwtAuthentication authenticationResult = (JwtAuthentication) this.authenticationManager.authenticate(authenticationRequest);
-                log.info("post-authenticationManager.authenticate");
                 SecurityContextHolder.getContext().setAuthentication(authenticationResult);
                 postAuthenticate(request, response, authenticationResult);
             } catch (JwtAuthenticationException ex) {
