@@ -38,6 +38,6 @@ public class MainController {
             return "redirect:";
         }
         redirectAttributes.addFlashAttribute("isNameEmpty", false);
-        return "redirect:";
+        return "redirect:"; 
     }
 }
