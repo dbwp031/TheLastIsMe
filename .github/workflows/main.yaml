@@ -32,6 +32,7 @@ jobs:
           spring.security.oauth2.client.registration.naver.client-id: ${{ secrets.CLIENT_ID_NAVER }}
           spring.security.oauth2.client.registration.naver.client-secret: ${{ secrets.CLIENT_SECRET_NAVER }}
           spring.security.oauth2.client.registration.naver.redirect-uri: ${{ secrets.REDIRECT_URI_NAVER }}
+          jwt.secret-key: ${{ secrets.JWT_SECRET }}
 
       - name: Set application-prod.yaml file
         uses: microsoft/variable-substitution@v1
