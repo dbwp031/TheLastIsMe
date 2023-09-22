@@ -1,6 +1,6 @@
 # TheLastIsMe
 진정한 **The Last Man**을 찾자!
-* http://ec2-3-21-80-153.us-east-2.compute.amazonaws.com:8080/
+* https://yuje.store
 ## Project Architecture
 ![image](https://github.com/dbwp031/TheLastIsMe/assets/65337423/a0049db6-3c26-42b4-a055-7654cc2d9a3b)
 
