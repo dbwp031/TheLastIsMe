@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  checks: write
+  id-token: write
 #permissions:
 #  contents: read
 jobs:
@@ -44,7 +48,7 @@ jobs:
 
       - name: GRANT execute permission for gradlew
         run: chmod +x ./gradlew
-        
+
       - name: gradle build
         run: ./gradlew build
 
